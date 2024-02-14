@@ -3,7 +3,7 @@ name: Markdown Terminology Lint Check
 on:
   pull_request_target:
     branches:
-    - master
+    - main
     paths:
     - '**.md'
     - '!.github/**'
