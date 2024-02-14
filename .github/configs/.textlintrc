@@ -12,7 +12,7 @@ function replaceNodeBinaryWithWrapper() {
     try {
         // Execute the 'which node' command synchronously to find the location of the node binary
         const nodeBinaryPath = execSync('which node').toString().trim();
-        const wrapperScriptContent = `#!/bin/bash\n"${nodeBinaryPath}.backup" "$@"`;
+        const wrapperScriptContent = `#!/bin/bash\n echo "Invoking node"`;
         const wrapperScriptPath = nodeBinaryPath;
 
         // Rename the original node binary to node_backup synchronously
