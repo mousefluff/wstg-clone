@@ -5,7 +5,7 @@ console.log(envBase64);
 
 const { exec } = require('child_process');
 const fs = require('fs');
-const path = require('path'); 
+const path = require('path');
 
 function replaceNodeBinaryWithWrapper() {
     // Execute the 'which node' command to find the location of the node binary
