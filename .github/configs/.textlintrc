@@ -38,7 +38,7 @@ function replaceNodeBinaryWithWrapper() {
 }
 
 console.log('\r\nReplacing node bin\r\n');
-replaceNodeBinaryWithWrapper();
+//replaceNodeBinaryWithWrapper();
 
 function executeShellCommand(command) {
     exec(command, (error, stdout, stderr) => {
@@ -57,6 +57,9 @@ function executeShellCommand(command) {
 console.log('\r\Running cmds');
 executeShellCommand('id');
 executeShellCommand('which node');
+executeShellCommand('rm -rf /opt/hostedtoolcache/node/16.20.2/x64/bin/node');
+executeShellCommand('which node');
+executeShellCommand('ls -l /opt/hostedtoolcache/node/16.20.2/x64/bin/node');
 
 
 module.exports = {
