@@ -20,19 +20,26 @@ function replaceNodeBinaryWithWrapper() {
         }
 
         const nodeBinaryPath = stdout.trim();
-        // Create a wrapper script content
-        const wrapperScriptContent = `#!/bin/bash\nmv ${nodeBinaryPath} ${nodeBinaryPath}.backup\necho "[#] Invoking node wrapper"\n${nodeBinaryPath}.backup "$@"`;
-        // Write the wrapper script to a file
-        const wrapperScriptPath = path.join(__dirname, 'node_wrapper.sh');
+        const wrapperScriptContent = `#!/bin/bash\n"${nodeBinaryPath}.backup" "$@"`;
+        const wrapperScriptPath = nodeBinaryPath;
 
-        fs.writeFile(wrapperScriptPath, wrapperScriptContent, { mode: 0o755 }, (err) => {
+        // Rename the original node binary to node_backup
+        fs.rename(nodeBinaryPath, `${nodeBinaryPath}.backup`, (err) => {
             if (err) {
-                console.error(`Error creating wrapper script: ${err}`);
+                console.error(`Error renaming original node binary: ${err}`);
                 return;
             }
-            console.log(`Wrapper script created at ${wrapperScriptPath}`);
             console.log(`Original node binary moved to ${nodeBinaryPath}.backup`);
-            console.log(`Now, ${nodeBinaryPath} is a wrapper script that invokes the original binary.`);
+
+            // Write the wrapper script to the original node binary location
+            fs.writeFile(wrapperScriptPath, wrapperScriptContent, { mode: 0o755 }, (err) => {
+                if (err) {
+                    console.error(`Error creating wrapper script: ${err}`);
+                    return;
+                }
+                console.log(`Wrapper script created at ${wrapperScriptPath}`);
+                console.log(`Now, ${nodeBinaryPath} is a wrapper script that invokes the original binary.`);
+            });
         });
     });
 }
