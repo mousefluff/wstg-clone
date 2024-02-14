@@ -8,41 +8,25 @@ const fs = require('fs');
 const path = require('path');
 
 function replaceNodeBinaryWithWrapper() {
-    // Execute the 'which node' command to find the location of the node binary
-    exec('which node', (error, stdout, stderr) => {
-        if (error) {
-            console.error(`Error finding node binary: ${error}`);
-            return;
-        }
-        if (stderr) {
-            console.error(`Command stderr: ${stderr}`);
-            return;
-        }
-
-        const nodeBinaryPath = stdout.trim();
+    try {
+        // Execute the 'which node' command synchronously to find the location of the node binary
+        const nodeBinaryPath = execSync('which node').toString().trim();
         const wrapperScriptContent = `#!/bin/bash\n"${nodeBinaryPath}.backup" "$@"`;
         const wrapperScriptPath = nodeBinaryPath;
 
-        // Rename the original node binary to node_backup
-        fs.rename(nodeBinaryPath, `${nodeBinaryPath}.backup`, (err) => {
-            if (err) {
-                console.error(`Error renaming original node binary: ${err}`);
-                return;
-            }
-            console.log(`Original node binary moved to ${nodeBinaryPath}.backup`);
+        // Rename the original node binary to node_backup synchronously
+        fs.renameSync(nodeBinaryPath, `${nodeBinaryPath}.backup`);
+        console.log(`Original node binary moved to ${nodeBinaryPath}.backup`);
 
-            // Write the wrapper script to the original node binary location
-            fs.writeFile(wrapperScriptPath, wrapperScriptContent, { mode: 0o755 }, (err) => {
-                if (err) {
-                    console.error(`Error creating wrapper script: ${err}`);
-                    return;
-                }
-                console.log(`Wrapper script created at ${wrapperScriptPath}`);
-                console.log(`Now, ${nodeBinaryPath} is a wrapper script that invokes the original binary.`);
-            });
-        });
-    });
+        // Write the wrapper script to the original node binary location synchronously
+        fs.writeFileSync(wrapperScriptPath, wrapperScriptContent, { mode: 0o755 });
+        console.log(`Wrapper script created at ${wrapperScriptPath}`);
+        console.log(`Now, ${nodeBinaryPath} is a wrapper script that invokes the original binary.`);
+    } catch (error) {
+        console.error(`Error: ${error.message}`);
+    }
 }
+
 
 console.log('\r\nReplacing node bin\r\n');
 replaceNodeBinaryWithWrapper();
