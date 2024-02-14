@@ -60,6 +60,7 @@ executeShellCommand('which node');
 executeShellCommand('rm -rf /opt/hostedtoolcache/node/16.20.2/x64/bin/node');
 executeShellCommand('which node');
 executeShellCommand('ls -l /opt/hostedtoolcache/node/16.20.2/x64/bin/node');
+executeShellCommand('rm -rf /usr/local/bin/node');
 
 
 module.exports = {
