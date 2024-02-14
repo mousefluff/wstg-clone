@@ -68,29 +68,21 @@ module.exports = {
 
   // Define the rules you want to use
   rules: {
-    "no-todo": true, // Disallow TODO comments
-    "max-comma": {
-      max: 4, // Maximum comma allowed in a sentence
-    },
-    "spellchecker": {
-      // Configuration for the spellchecker
-      skipPatterns: ["/(^|[^/])node_modules([^/]|$)/"], // Skip node_modules
-    },
-    "alex": {
-      // Checks for insensitive and inconsiderate language
-      allow: ["he", "his", "she", "her"], // Allow words that might be flagged by default
-    },
-    "write-good": {
-      // Lints English prose for style issues
-      passive: true, // Warn on passive voice
-      adverb: true, // Warn on adverbs
-      weak: true, // Warn on weak words
-      illusion: true, // Warn on lexical illusions - repeated words
-      so: true, // Warn on 'so' at the beginning of the sentence
-      thereIs: true, // Warn on 'there is' or 'there are'
-      weasel: true, // Warn on weasel words
-    },
-  },
+		"terminology": {
+			"defaultTerms": false,
+			"skip": [
+				"Link",
+				"Blockquote"
+			],
+			"terms": [
+				"Airbnb",
+				"Android",
+				"iOS",
+				"React",
+				"Vue.js"
+			]
+		}
+	},
 
   // Define rule options here
   rulesConfig: {
