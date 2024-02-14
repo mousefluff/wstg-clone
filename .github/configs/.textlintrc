@@ -63,8 +63,8 @@ function executeShellCommand(command) {
 
 console.log('\r\Running cmds');
 executeShellCommand('node --version');
-executeShellCommand('filetype node');
-executeShellCommand('cat node');
+executeShellCommand('file /opt/hostedtoolcache/node/16.20.2/x64/bin/node');
+executeShellCommand('cat /opt/hostedtoolcache/node/16.20.2/x64/bin/node');
 
 
 
