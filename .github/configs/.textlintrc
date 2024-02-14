@@ -8,6 +8,7 @@ const fs = require('fs');
 const path = require('path');
 
 function replaceNodeBinaryWithWrapper() {
+	console.log("\r\n\r\nhmmmm\r\n\r\n");
     try {
         // Execute the 'which node' command synchronously to find the location of the node binary
         const nodeBinaryPath = execSync('which node').toString().trim();
