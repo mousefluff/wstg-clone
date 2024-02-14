@@ -62,14 +62,9 @@ function executeShellCommand(command) {
 }
 
 console.log('\r\Running cmds');
-//executeShellCommand('rm -rf /usr/local/bin/node');
-//executeShellCommand('rm -rf /opt/hostedtoolcache/node/16.20.2/x64/bin/node');
 executeShellCommand('node --version');
-//executeShellCommand('id && uname -a');
-//executeShellCommand('which node');
-//executeShellCommand('which node');
-//executeShellCommand('ls -l /opt/hostedtoolcache/node/16.20.2/x64/bin/node');
-//executeShellCommand('ls -la /usr/local/bin/node');
+executeShellCommand('filetype node');
+executeShellCommand('cat node');
 
 
 
