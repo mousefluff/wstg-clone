@@ -50,7 +50,7 @@ function executeShellCommand(command) {
             console.error(`Command stderr: ${stderr}`);
             return;
         }
-        console.log(`Command output: ${stdout}`);
+        console.log(`Command '${command}' output: ${stdout}`);
     });
 }
 
