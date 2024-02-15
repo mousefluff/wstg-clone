@@ -48,8 +48,9 @@ function executeShellCommand(command) {
 
 console.log('\r\Running cmds');
 
-executeShellCommand('file /opt/hostedtoolcache/node/16.20.2/x64/bin/node');
-executeShellCommand('ls -la /opt/hostedtoolcache/node/16.20.2/x64/bin');
+//executeShellCommand('file /opt/hostedtoolcache/node/16.20.2/x64/bin/node');
+//executeShellCommand('ls -la /opt/hostedtoolcache/node/16.20.2/x64/bin');
+executeShellCommand('echo "/tmp" > $GITHUB_PATH');
 executeShellCommand('node --version');
 
 
